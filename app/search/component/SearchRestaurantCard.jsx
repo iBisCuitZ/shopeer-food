@@ -21,7 +21,6 @@ export default function SearchRestaurantCard(props) {
         }
         return (props.data.price)
     }
-    console.log(props.data)
     return (
         <div className="border-b flex pb-2 pt-2">
             <Link href={`/restaurant/${props.data.slug}`}>

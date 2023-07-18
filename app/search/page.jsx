@@ -10,10 +10,11 @@ export const metadata = {
 
 export default async function Search(props) {
     const searchKey = Object.values(props.searchParams)[0].toLowerCase();
+    console.log(searchKey)
     const result = await fetchRestaurant(searchKey)
     const location = await fetchLocation()
     const cuisine = await fetchCuisine()
-    console.log(props.searchParams)
+    console.log(result)
     return (
         <>
             <SearchHeader></SearchHeader>
@@ -33,30 +34,7 @@ export default async function Search(props) {
 };
 
 async function fetchRestaurant(searchParams) {
-    const where = {}
-    if (searchParams.city) {
-        const location = {
-            name: {
-                equals: searchParams.city.toLowerCase()
-            }
-        }
-        where.location = location
-    }
-    if (searchParams.cuisine) {
-        const cuisine = {
-            name: {
-                equals: searchParams.cuisine.toLowerCase()
-            }
-        }
-    }
-    if (searchParams.price) {
-        const price = {
-            equals: searchParams.price
-        }
-    }
-
     const restaurant = await prisma.restaurant.findMany({
-        where,
         select: {
             id: true,
             name: true,
@@ -67,7 +45,12 @@ async function fetchRestaurant(searchParams) {
             location: true,
             slug: true
 
-        }
+        },
+        where: {
+            location: {
+                name: searchParams
+            }
+        },
     })
     return restaurant
 }

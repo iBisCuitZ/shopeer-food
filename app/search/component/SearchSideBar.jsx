@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Cuisine } from "@prisma/client";
 export default function SearchSideBar(props) {
     const location = ["Toronto", "Ottawa", "Montreal", "Hamilton", "Kingston", "Niagara"]
     const cuisine = ['Indian', "Italian", "Mexican"]
@@ -17,9 +18,11 @@ export default function SearchSideBar(props) {
             </div>
             <div className="border-b pb-4 mt-3">
                 <h1 className="mb-2">Cuisine</h1>
-                {props.cuisine.map((data) => {
+                {cuisine.map((cuisine) => {
                     return (
-                        <Link href={{ pathname: "/search", query: { cuisine: data.name } }}><p className="font-light text-reg">{data.name.charAt(0).toUpperCase() + data.name.slice(1)}</p></Link>
+                        <Link href={{ pathname: "/search", query: { cuisine: cuisine } }}>
+                            <p className="font-light text-reg">{cuisine}</p>
+                        </Link>
                     )
                 })}
             </div>
