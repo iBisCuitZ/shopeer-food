@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function RestaurantNavbar(props) {
-    const [effectOverview, setEffect] = useState('');
-    const setHandleEffectOn = () => {
+    const [effectOverview, setEffect] = useState(true);
+    const setHandleEffectOn = (event) => {
         setEffect(true)
     }
-    const setHandleEffectOff = () => {
+    const setHandleEffectOff = (event) => {
         setEffect(false)
     }
     return (

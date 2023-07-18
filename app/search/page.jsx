@@ -12,12 +12,19 @@ export const metadata = {
 };
 
 export default async function Search(props) {
-    const searchKey = Object.values(props.searchParams)[0].toLowerCase();
-    console.log(searchKey)
-    const result = await fetchRestaurant(searchKey)
+    // console.log((props.searchParams)[0].toLowerCase())
+    let searchKey = ""
+    let result = []
+    if (props.searchParams.city) {
+        searchKey = Object.values(props.searchParams)[0].toLowerCase();
+        result = await fetchRestaurantByLocation(searchKey)
+    }
+    else if (props.searchParams.cuisine) {
+        searchKey = Object.values(props.searchParams)[0].toLowerCase();
+        result = await fetchRestaurantByCuisine(searchKey)
+    }
     const location = await fetchLocation()
     const cuisine = await fetchCuisine()
-    console.log(result)
     return (
         <>
             <SearchHeader></SearchHeader>
@@ -36,7 +43,7 @@ export default async function Search(props) {
     )
 };
 
-async function fetchRestaurant(searchParams) {
+async function fetchRestaurantByLocation(searchParams) {
     const restaurant = await prisma.restaurant.findMany({
         select: {
             id: true,
@@ -51,6 +58,27 @@ async function fetchRestaurant(searchParams) {
         },
         where: {
             location: {
+                name: searchParams
+            }
+        },
+    })
+    return restaurant
+}
+async function fetchRestaurantByCuisine(searchParams) {
+    const restaurant = await prisma.restaurant.findMany({
+        select: {
+            id: true,
+            name: true,
+            images: true,
+            main_image: true,
+            price: true,
+            cuisine: true,
+            location: true,
+            slug: true
+
+        },
+        where: {
+            cuisine: {
                 name: searchParams
             }
         },

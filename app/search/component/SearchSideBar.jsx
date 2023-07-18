@@ -8,8 +8,9 @@ export default function SearchSideBar(props) {
             <div className="border-b pb-4">
                 <h1 className="mb-2">Region</h1>
                 {location.map((location) => {
+                    const locate = location.toLowerCase()
                     return (
-                        <Link href={{ pathname: "/search", query: { city: location } }}>
+                        <Link href={{ pathname: "/search", query: { city: locate } }}>
                             <p className="font-light text-reg">
                                 {location}
                             </p>
