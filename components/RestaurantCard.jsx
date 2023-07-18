@@ -1,6 +1,7 @@
 
 import Link from "next/link";
 export default function RestaurantCard(props) {
+    console.log(props.restaurant)
     const checkPrice = () => {
         if (props.restaurant.price === "REGULAR") {
             return (
@@ -42,11 +43,11 @@ export default function RestaurantCard(props) {
                     </div>
                     <div className="flex text-reg font-light capitalize">
                         <p className=" mr-3">
-                            {props.restaurant.cuisine.name}
+                            {/* {props.restaurant.cuisine.name} */}
                         </p>
                         <p className="mr-3 font-bold">{checkPrice()}</p>
                         <p>
-                            {props.restaurant.location.name}
+                            {/* {props.restaurant.location.name} */}
                         </p>
                     </div>
                     <p className="text-sm mt-1 font-bold">Booked 3 times today</p>

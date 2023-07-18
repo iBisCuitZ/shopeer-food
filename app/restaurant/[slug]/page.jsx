@@ -28,7 +28,7 @@ const fetchRestaurants = async (slug) => {
     return restaurant;
 }
 export default async function RestaurantDetails(props) {
-    const restaurant = await fetchRestaurants(props.params.slug)
+    const restaurant = await fetchRestaurants(typeof props.params.slug === "string" ? props.params.slug : 'Invalid Request')
 
     return (
         <>
