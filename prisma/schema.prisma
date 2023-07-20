@@ -13,20 +13,20 @@ datasource db {
 model Restaurant {
   id          Int      @id @default(autoincrement())
   name        String
-  price       PRICE
-  main_image  String
   images      String[]
+  main_image  String
   description String
   open_time   String
   close_time  String
   slug        String   @unique
+  price       PRICE
+  items       Items[]
   location_id Int
   location    Location @relation(fields: [location_id], references: [id])
   cuisine_id  Int
   cuisine     Cuisine  @relation(fields: [cuisine_id], references: [id])
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
-  Items       Items[]
 }
 
 model Items {
@@ -41,15 +41,19 @@ model Items {
 }
 
 model Location {
-  id         Int          @id @default(autoincrement())
-  name       String
-  Restaurant Restaurant[]
+  id          Int          @id @default(autoincrement())
+  name        String
+  restaurants Restaurant[]
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
 }
 
 model Cuisine {
-  id      Int          @id @default(autoincrement())
-  name    String
-  Cuisine Restaurant[]
+  id          Int          @id @default(autoincrement())
+  name        String
+  restaurants Restaurant[]
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
 }
 
 enum PRICE {
