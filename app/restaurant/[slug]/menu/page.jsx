@@ -20,7 +20,7 @@ const fetchMenu = async (slug) => {
         },
         select: {
             name: true,
-            Items: true
+            items: true
         }
     })
     return restaurant;
@@ -34,7 +34,7 @@ export default async function RestaurantMenu(props) {
             <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
                 <div className="bg-white w-[100%] rounded p-3 shadow">
                     <RestaurantNavbar params={props.params} menuActive={true}></RestaurantNavbar>
-                    <Menu menu={restaurant.Items}></Menu>
+                    <Menu menu={restaurant.items}></Menu>
                 </div>
             </div>
         </>
