@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Navbar from "./../../../../components/Navbar";
+import Navbar from "../../../components/Navbar";
 import RestaurantHeader from "./../component/RestaurantHeader";
 import RestaurantNavbar from "./../component/RestaurantNavbar";
 import Menu from "./../component/Menu";

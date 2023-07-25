@@ -9,7 +9,7 @@ export default function Images(props) {
                     <img
                         className="w-56 h-44 mr-1 mb-1 hover:scale-105 transition-all rounded-md p-1"
                         src={image}
-                        alt=""
+                        alt="DD"
                     />
                 ))}
             </div>

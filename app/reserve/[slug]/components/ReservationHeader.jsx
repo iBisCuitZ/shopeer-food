@@ -1,11 +1,11 @@
 export default function ReservationHeader() {
-    return(
+    return (
         <div>
             <h3 className="font-bold">You're almost done!</h3>
             <div className="mt-5 flex">
                 <img
                     src="https://images.otstatic.com/prod1/49153814/2/medium.jpg"
-                    alt=""
+                    alt="AS"
                     className="w-32 h-18 rounded"
                 />
                 <div className="ml-4">

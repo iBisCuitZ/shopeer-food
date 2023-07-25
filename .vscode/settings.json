@@ -4,6 +4,10 @@
         "javascript": "javascript",
         "css": "css"
     },
+    "[prisma]": {
+        "editor.defaultFormatter": "Prisma.prisma"
+    },
+    "editor.formatOnSave": true,
     "editor.quickSuggestions": {
         "strings": true
     }

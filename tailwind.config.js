@@ -26,6 +26,9 @@ module.exports = {
                 '6xl': '50px',
                 '7xl': '70px',
             },
+            fontFamily: {
+                monserrat: ['Montserrat', 'sans-serif'],
+            },
         },
     },
     plugins: [],

@@ -1,7 +1,7 @@
 import MenuCard from "./MenuCard";
 
 export default function Menu(props) {
-    console.log(props)
+
     return (
         <main className="bg-white mt-5">
             <div>

@@ -1,5 +1,5 @@
-import Header from "./../components/Header";
-import RestaurantCard from "./../components/RestaurantCard";
+import Header from "./components/Header";
+import RestaurantCard from "./components/RestaurantCard";
 import { PrismaClient, Cuisine, Location, PRICE } from "@prisma/client";
 export const metadata = {
     icons: {
@@ -19,6 +19,7 @@ const fetchRestaurants = async () => {
             location: true,
             price: true,
             slug: true,
+            reviews: true,
         }
     })
     return restaurants
@@ -28,7 +29,7 @@ export default async function Home() {
     return (
         <>
             <Header></Header>
-            <div className="py-3 px-36 mt-10 flex flex-wrap justify-center ">
+            <div className="py-3 px-36 mt-10 flex flex-wrap justify-center min-w-[640px]">
                 {restaurant.map((restaurant) => {
                     return <RestaurantCard restaurant={restaurant}></RestaurantCard>
                 })}

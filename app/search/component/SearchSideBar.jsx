@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Cuisine } from "@prisma/client";
 export default function SearchSideBar(props) {
     const location = ["Toronto", "Ottawa", "Montreal", "Hamilton", "Kingston", "Niagara"]
-    const cuisine = ['Indian', "Italian", "Mexican"]
+    const cuisine = ['Thai', "Italian", "Mexican"]
     return (
         <div className="w-1/5">
             <div className="border-b pb-4">

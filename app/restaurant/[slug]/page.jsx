@@ -23,6 +23,15 @@ const fetchRestaurants = async (slug) => {
     const restaurant = await prisma.restaurant.findUnique({
         where: {
             slug
+        },
+        select: {
+            id: true,
+            name: true,
+            images: true,
+            description: true,
+            slug: true,
+            reviews: true
+
         }
     })
     return restaurant;
@@ -37,10 +46,10 @@ export default async function RestaurantDetails(props) {
                 <div className="bg-white w-[70%] rounded p-3 shadow">
                     <RestaurantNavbar params={restaurant} ></RestaurantNavbar>
                     <Title data={restaurant.name}></Title>
-                    <Rating></Rating>
+                    <Rating reviews={restaurant.reviews}></Rating>
                     <Description data={restaurant.description}></Description>
                     <Images data={restaurant.images} className="hover:scale-110 transition-all"></Images>
-                    <Reviews></Reviews>
+                    <Reviews reviews={restaurant.reviews}></Reviews>
                 </div>
                 <div className="w-[27%] relative text-reg">
                     <ReservationCard></ReservationCard>

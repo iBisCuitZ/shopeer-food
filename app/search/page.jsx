@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 export default async function Search(props) {
-    // console.log((props.searchParams)[0].toLowerCase())
+
     let searchKey = ""
     let result = []
     if (props.searchParams.city) {
@@ -53,8 +53,8 @@ async function fetchRestaurantByLocation(searchParams) {
             price: true,
             cuisine: true,
             location: true,
-            slug: true
-
+            slug: true,
+            reviews: true
         },
         where: {
             location: {
