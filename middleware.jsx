@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as jose from 'jose';
-import jwt from "jsonwebtoken"
 export async function middleware(req, res, next) {
     const bearerToken = req.headers.get('authorization');
 
@@ -28,5 +27,12 @@ export async function middleware(req, res, next) {
 }
 
 export const config = {
+    runtime: 'experimental-edge', // for Edge API Routes only
+    unstable_allowDynamic: [
+        // allows a single file
+        '/lib/utilities.js',
+        // use a glob to allow anything in the function-bind 3rd party module
+        '/node_modules/function-bind/**',
+    ],
     matcher: ['/api/auth/me'],
 };
