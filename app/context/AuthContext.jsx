@@ -4,6 +4,7 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import React, { useState, createContext, useEffect } from "react";
 
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 export const AuthenticationContext = createContext({
     loading: true,
@@ -28,6 +29,7 @@ export default function AuthContext({
             loading: true,
         });
         try {
+            sleep(2000)
             const jwt = getCookie("jwt");
 
             if (!jwt) {
@@ -38,7 +40,7 @@ export default function AuthContext({
                 });
             }
 
-            const response = await axios.get("http://localhost:3000/api/auth/me", {
+            const response = await axios.get("/api/auth/me", {
                 headers: {
                     Authorization: `Bearer ${jwt}`,
                 },

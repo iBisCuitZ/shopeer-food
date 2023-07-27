@@ -12,7 +12,6 @@ export const metadata = {
 };
 
 export default async function Search(props) {
-
     let searchKey = ""
     let result = []
     if (props.searchParams.city) {
@@ -74,7 +73,8 @@ async function fetchRestaurantByCuisine(searchParams) {
             price: true,
             cuisine: true,
             location: true,
-            slug: true
+            slug: true,
+            reviews: true
 
         },
         where: {

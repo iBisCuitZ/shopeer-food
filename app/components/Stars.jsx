@@ -1,4 +1,3 @@
-
 import React from 'react'
 import emptyStar from '../../public/icons/empty-star.png'
 import halfStar from '../../public/icons/half-star.png'
@@ -22,8 +21,8 @@ export default function Stars({ reviews, ratings }) {
             }
             else stars.push(emptyStar)
         }
-        return stars.map(star => (
-            <Image alt="star" src={star} className="w-4 h-4 mr-1" />
+        return stars.map((star, index) => (
+            <Image alt="star" src={star} className="w-4 h-4 mr-1" key={index} />
         ))
     }
 

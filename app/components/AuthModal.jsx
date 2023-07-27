@@ -22,8 +22,6 @@ const style = {
 export default function AuthModal({ isSignIn }) {
     const [open, setOpen] = useState(false);
     const [disabled, setDisabled] = useState(true)
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
     const { signin, signup } = useAuth()
     const { loading, data, error } = useContext(AuthenticationContext)
     const [inputs, setInputs] = useState({
@@ -34,8 +32,8 @@ export default function AuthModal({ isSignIn }) {
         city: '',
         password: '',
     });
-
-
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const handleChangeInput = (e) => {
         setInputs({
             ...inputs,
@@ -52,6 +50,7 @@ export default function AuthModal({ isSignIn }) {
         }
 
     }
+
     useEffect(() => {
         if (isSignIn) {
             if (inputs.password && inputs.email) {

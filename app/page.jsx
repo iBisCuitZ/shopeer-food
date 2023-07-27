@@ -27,13 +27,13 @@ const fetchRestaurants = async () => {
 export default async function Home() {
     const restaurant = await fetchRestaurants();
     return (
-        <>
+        <div className="">
             <Header></Header>
             <div className="py-3 px-36 mt-10 flex flex-wrap justify-center min-w-[640px]">
                 {restaurant.map((restaurant) => {
                     return <RestaurantCard restaurant={restaurant}></RestaurantCard>
                 })}
             </div>
-        </>
+        </div>
     );
 }

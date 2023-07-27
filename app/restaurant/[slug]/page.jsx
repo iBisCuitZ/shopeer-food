@@ -52,7 +52,7 @@ export default async function RestaurantDetails(props) {
                     <Reviews reviews={restaurant.reviews}></Reviews>
                 </div>
                 <div className="w-[27%] relative text-reg">
-                    <ReservationCard></ReservationCard>
+                    <ReservationCard slug={restaurant.slug}></ReservationCard>
                 </div>
             </div>
         </>
