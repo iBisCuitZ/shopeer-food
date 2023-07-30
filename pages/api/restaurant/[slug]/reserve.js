@@ -110,7 +110,6 @@ export default async function handler(req, res) {
                 restaurant_id: restaurant.id,
             },
         });
-        console.log('ZA in reserve');
         const bookingsOnTablesData = tablesToBooks.map((table_id) => {
             return {
                 table_id,

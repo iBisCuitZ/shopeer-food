@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import useFetchBooking from "../../hooks/useFetchBooking"
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import ReservationListCard from "./RevervationListCard";
 const style = {
     position: 'absolute',
@@ -18,9 +18,13 @@ const style = {
 
 export default function BasicModal({ userEmail, username }) {
     const { loading, data, error, fetchBooking } = useFetchBooking()
-    const [bookingList, setBookingList] = useState(null)
+    const [toggleFetch, setToggle] = useState(true)
+    // const [bookingList, setBookingList] = useState(null)
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+        setOpen(true)
+        setToggle(!toggleFetch)
+    };
     const handleClose = () => setOpen(false);
 
     useEffect(() => {
@@ -29,7 +33,7 @@ export default function BasicModal({ userEmail, username }) {
         }
         waitHerAisus()
         return () => null
-    }, [])
+    }, [toggleFetch])
 
     return (
         <div>
@@ -42,10 +46,12 @@ export default function BasicModal({ userEmail, username }) {
             >
                 <>
                     <Box sx={style} className="w-[90%] h-[70%] md:w-[60%] lg:w-[30%] overflow-y-auto overflow-x-hidden">
-                        <h1 className='border-b-2 pb-4 text-4xl font-monserrat'>Reservation List of {username}</h1>
-                        {data ? data.map(booking => (
-                            <ReservationListCard booking={booking} key={booking.id} />
-                        )) : null}
+                        {loading ? <div className='flex justify-center items-center h-full'><CircularProgress class></CircularProgress></div> :
+                            <>
+                                <h1 className='border-b-2 pb-4 text-4xl font-monserrat'>Reservation List of {username}</h1>
+                                {data ? data.map(booking => (<ReservationListCard booking={booking} key={booking.time} />)) : null}
+                            </>
+                        }
                     </Box>
                 </>
             </Modal>

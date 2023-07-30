@@ -38,7 +38,6 @@ export default function useReservation() {
                     },
                 }
             );
-            console.log(response);
             setLoading(false);
             setDidBook(true);
             return response.data;
@@ -47,6 +46,5 @@ export default function useReservation() {
             setError(error.response.data.errorMessage);
         }
     };
-
     return { loading, error, createReservation };
 }

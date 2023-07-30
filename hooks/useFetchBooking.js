@@ -17,7 +17,6 @@ export default function useFetchBooking() {
             if (!response) {
                 throw new Error({ message: 'Could not find' });
             }
-
             setData(null);
             setLoading(false);
             setData(response.data);

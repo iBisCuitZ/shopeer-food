@@ -28,10 +28,9 @@ export default function AuthContext({
             error: null,
             loading: true,
         });
+        sleep(2000)
         try {
-            sleep(2000)
             const jwt = getCookie("jwt");
-
             if (!jwt) {
                 return setAuthState({
                     data: null,

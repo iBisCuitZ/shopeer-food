@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import useReservation from "./../../../../hooks/useReservation";
 import { CircularProgress } from "@mui/material";
 import { AuthenticationContext } from "./../../../context/AuthContext";
+import useFetchBooking from "../../../../hooks/useFetchBooking";
 
 export default function ReservationForm({
     slug,
@@ -10,6 +11,7 @@ export default function ReservationForm({
     partySize,
     authUser
 }) {
+    const { data, fetchBooking } = useFetchBooking()
     const [inputs, setInputs] = useState(
         {
             bookerFirstName: "",
@@ -24,7 +26,6 @@ export default function ReservationForm({
     const [disabled, setDisabled] = useState(true);
     const [didBook, setDidBook] = useState(false);
     const { error, loading, createReservation } = useReservation();
-
     useEffect(() => {
         if (authUser && inputs.bookerFirstName === "") {
             setInputs({
@@ -53,7 +54,6 @@ export default function ReservationForm({
     };
 
     const handleClick = async () => {
-        console.log("ZA in reserveform")
         const booking = await createReservation({
             slug,
             partySize,
@@ -67,8 +67,7 @@ export default function ReservationForm({
             bookerRequest: inputs.bookerRequest,
             setDidBook,
         });
-        console.log(booking)
-
+        await fetchBooking(authUser.email)
     };
 
     return (
