@@ -10,6 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Comments {
+  id         Int      @id @default(autoincrement())
+  text       String
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
 model Restaurant {
   id          Int       @id @default(autoincrement())
   name        String
@@ -60,16 +69,17 @@ model Cuisine {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   first_name String
   last_name  String
   city       String
   password   String
-  email      String   @unique
+  email      String     @unique
   phone      String
   reviews    Review[]
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  comment    Comments[]
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
 }
 
 model Review {
